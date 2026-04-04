@@ -88,7 +88,7 @@ The system follows a layered architecture:
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-# Documentation
+## Documentation
 * UML Class Diagram
 * Sequence Diagram
 * Strategy Patterns explanation
