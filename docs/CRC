@@ -1,0 +1,91 @@
+Product - Domain Entity
+
+Responsibilities
+	⁃	Knows its name, category, and lifespan
+	⁃	Hold its list of Materials (1-*)
+	⁃	Expose composition for product details
+	⁃	
+Collaborators:
+	⁃	 MaterialComposition       
+	⁃	 Category                  
+	⁃	 Lifespan                  
+	⁃	 ImpactCalculationStrategy 
+	⁃	 RecyclingGuidance 
+
+Material - Domain Entity
+
+Responsibility:
+	⁃	﻿﻿Know its name and Impact values
+	⁃	﻿﻿Know its recycling and instructions
+	⁃	﻿﻿Be reusable across multiple products
+
+
+Collaborators:
+	⁃	MaterialComposition          
+	⁃	RecyclingGuidance 
+	⁃	Product (referenced by)
+
+ImpactCalculationStrategy - Strategy Role
+
+Responsibility:
+	⁃	﻿﻿Define a metric for environmental impact
+	⁃	be interchangeable with other strategies
+	⁃	compute a result from product materials and composition
+
+
+Collaborators:
+	⁃	Product receives as input
+	⁃	Material reads values from
+	⁃	material composition
+	⁃	product service
+
+RecyclingGuidance - Domain Service
+
+Responsibility:
+	⁃	﻿﻿Derives Guidance for a product
+	⁃	handle mixed material for edge cases
+	⁃	combines rules across materials
+
+Collaborators:
+	⁃	Product receives as input
+	⁃	Material Composition
+
+RecyclingCategory - Value Object/Enumeration
+
+Responsibility:
+	⁃	﻿﻿Classify Materials recycling type
+	⁃	carry a recycling label
+	⁃	be stable and reusable across materials
+
+Collaborators:
+	⁃	materials owned by
+	⁃	products owned by
+
+Category — Value Object
+Responsibility:
+	⁃	Know its label and classification type
+	⁃	Be comparable by value, not identity
+	⁃	Be reusable across multiple products without modification
+Collaborators:
+	⁃	Product — owned by, used to classify
+
+Lifespan — Value Object
+Responsibility:
+	⁃	Know its duration value and unit (e.g. 5 years)
+	⁃	Be comparable by value, not identity
+	⁃	Represent estimated useful life without tracking change over time
+Collaborators:
+	⁃	Product — owned by, used to describe expected duration
+Product (Domain Entity) The Product is responsible for maintaining its identity through its name, category, and lifespan while holding a list of one or more materials. It exposes its composition details to collaborators like RecyclingGuidance and ImpactCalculationStrategy for system-wide analysis. It acts as the central entity that coordinates with external strategies to determine its environmental footprint.
+
+Material (Domain Entity) The Material represents a physical substance defined by its name, impact values, and specific recycling instructions. It is designed to be a reusable entity across multiple products, ensuring that environmental data remains consistent throughout the system. It collaborates with MaterialComposition to define how it is utilised within a specific product context.
+
+ImpactCalculationStrategy (Strategy Role) This role defines an interchangeable metric for calculating environmental impact based on a product's specific materials and composition. It computes a final result by reading values from the products material’s composition, allowing for different environmental metrics to be swapped easily. It ensures the calculation logic remains independent of the Product entity's core data.
+
+RecyclingGuidance (Domain Service) This service is responsible for deriving end-of-life guidance by combining the rules and instructions of all materials within a product. It specifically handles edge cases for mixed-material products to ensure the user receives clear, safe recycling advice. It takes a Product as input and analyses the MaterialComposition to produce its output.
+
+RecyclingCategory (Value Object/Enum) The RecyclingCategory classifies materials into stable, reusable types and carries the necessary recycling labels for the system. It is owned by materials and is reachable from products indirectly through material composition - This provides the classification logic close to the data it describes.
+
+Category (Value Object) The Category is responsible for classifying a product into a named type and exists to give the domain a shared vocabulary for grouping products. It knows only its label and carries no unique identity — two categories with the same name are considered equal. It must not hold behaviour or make decisions; it exists solely to be owned and read by Product.
+
+Lifespan (Value Object) The Lifespan is responsible for representing the estimated useful duration of a product and exists to make that value explicit in the domain rather than leaving it as a raw number. It knows its duration and unit, and is defined entirely by that data — two Lifespans with the same value are interchangeable. It must not change over time or track history; it is immutable and owned entirely by Product.
