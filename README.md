@@ -1,6 +1,6 @@
 ## Sustainable Product and Recycling Management System
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 
 ## Team Members & Roles
@@ -9,17 +9,17 @@
 * Farhan Shahriar -
 * Al Sadman Pretu -
 *
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 ## Project Overview
 This project is a console-based application designed to manage products, their material composition, and environmental impact. It also provides recycling guidance based on material properties.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 ## System Purpose OR Objective
 The purpose of this system is to demonstrate software architecture principles, domain modeling, and design patterns rather than focusing solely on feature implementation, well - maintained architecture, and testability.
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 ## Core Features
 * Product creation and management
@@ -27,7 +27,7 @@ The purpose of this system is to demonstrate software architecture principles, d
 * Environmental impact calculation using Strategy Patterns
 * Recycling guidance based on product composition
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 ## Architecture
 The system follows a layered architecture:
@@ -35,7 +35,7 @@ The system follows a layered architecture:
 * Application Layer: Coordinates system operations
 * Domain Layer: Contains core business logic
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 
 ## Development Plan w1
@@ -69,7 +69,7 @@ The system follows a layered architecture:
 * Layered Architecture
 * Professional Workflow
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 
 ## Domain Concepts
@@ -79,19 +79,19 @@ The system follows a layered architecture:
 * ImpactStrategy
 * RecyclingService
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 
 ## Development Plan
 * Week 1–3: Analysis, design, and architecture (no business logic)
 * Week 4+: Implementation and testing
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
 ## Documentation
 * UML Class Diagram
 * Sequence Diagram
 * Strategy Patterns explanation
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------
 
