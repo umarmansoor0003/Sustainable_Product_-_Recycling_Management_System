@@ -6,9 +6,6 @@
 ## Team Members & Roles
 * Umar Mansoor -
 * Mustafa Sadir -
-* Farhan Shahriar -
-* Al Sadman Pretu -
-*
 -----------------------------------------------------------
 
 ## Project Overview
