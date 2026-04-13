@@ -87,26 +87,26 @@ The project follows a structured layered architecture consisting of Presentation
 
 ## Package Structure
 src/
- ├── domain/
- │    ├── Product.java
- │    ├── Material.java
- │    ├── MaterialComposition.java
- │    ├── Category.java
- │    ├── Lifespan.java
- │    ├── RecyclingCategory.java
- │    ├── ImpactCalculationStrategy.java
- │    ├── ProductRepository.java
- │
- ├── application/
- │    ├── ProductService.java
- │
- ├── presentation/
- │    ├── ConsoleUI.java
- │
- ├── infrastructure/
- │    ├── InMemoryProductRepository.java
- │
- └── Main.java
+- domain/
+  - Product.java
+  - Material.java
+  - MaterialComposition.java
+  - Category.java
+  - Lifespan.java
+  - RecyclingCategory.java
+  - ImpactCalculationStrategy.java
+  - ProductRepository.java
+
+- application/
+  - ProductService.java
+
+- presentation/
+  - ConsoleUI.java
+
+- infrastructure/
+  - InMemoryProductRepository.java
+
+- Main.java
 
 ## Dependency Direction
 The system follows the dependency rule:
