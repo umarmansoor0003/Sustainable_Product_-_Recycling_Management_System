@@ -5,6 +5,7 @@
 ## Team Members & Roles
 * Umar Mansoor -
 * Mustafa Sadir -
+* Bruno Ihezie -
 -----------------------------------------------------------
 
 ## Project Overview
