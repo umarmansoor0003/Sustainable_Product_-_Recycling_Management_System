@@ -57,6 +57,25 @@ The purpose of this system is to demonstrate software architecture principles, d
 
 ---
 
+## Technical Setup
+
+### Prerequisites
+* Java 22
+* Gradle (Groovy)
+
+### Build & Run
+```bash
+./gradlew build
+./gradlew run
+```
+
+### Base Package
+```
+se.hkr.sustainableproduct
+```
+
+---
+
 ## Architecture Overview
 The system follows a four-layer architecture:
 * Presentation Layer: Console-based user interaction
@@ -102,39 +121,44 @@ The project follows a structured layered architecture consisting of Presentation
 ## Package Structure
 ```
 src/
-├── domain/
-│   ├── Product.java
-│   ├── Material.java
-│   ├── MaterialComposition.java
-│   ├── Category.java
-│   ├── Lifespan.java
-│   ├── RecyclingCategory.java
-│   ├── ImpactCalculationStrategy.java
-│   ├── SimpleImpactStrategy.java
-│   ├── WeightedImpactStrategy.java
-│   ├── RecyclingGuide.java
-│   ├── RecyclableGuidance.java
-│   ├── CompostableGuidance.java
-│   ├── HazardousGuidance.java
-│   ├── LandfillableGuidance.java
-│   ├── MixedMaterialGuidance.java
-│   ├── GuidanceSelector.java
-│   ├── ProductRepository.java
-│   └── MaterialRepository.java
-│
-├── application/
-│   ├── ProductService.java
-│   └── MaterialService.java
-│
-├── presentation/
-│   └── ConsoleUI.java
-│
-├── infrastructure/
-│   ├── InMemoryProductRepository.java
-│   └── InMemoryMaterialRepository.java
-│
-└── Main.java
+└── main/
+    └── java/
+        └── se/
+            └── hkr/
+                └── sustainableproduct/
+                    ├── domain/
+                    │   ├── Product.java
+                    │   ├── Material.java
+                    │   ├── MaterialComposition.java
+                    │   ├── Category.java
+                    │   ├── Lifespan.java
+                    │   ├── RecyclingCategory.java
+                    │   ├── ImpactCalculationStrategy.java
+                    │   ├── SimpleImpactStrategy.java
+                    │   ├── WeightedImpactStrategy.java
+                    │   ├── RecyclingGuide.java
+                    │   ├── RecyclableGuidance.java
+                    │   ├── CompostableGuidance.java
+                    │   ├── HazardousGuidance.java
+                    │   ├── LandfillableGuidance.java
+                    │   ├── MixedMaterialGuidance.java
+                    │   ├── GuidanceSelector.java
+                    │   ├── ProductRepository.java
+                    │   └── MaterialRepository.java
+                    │
+                    ├── application/
+                    │   ├── ProductService.java
+                    │   └── MaterialService.java
+                    │
+                    ├── presentation/
+                    │   └── ConsoleUI.java
+                    │
+                    └── infrastructure/
+                        ├── InMemoryProductRepository.java
+                        └── InMemoryMaterialRepository.java
 ```
+
+> **Note:** `Main.java` sits at the root of the `sustainableproduct` package as the application entry point.
 
 ## Dependency Direction
 The system follows the dependency rule:
@@ -152,7 +176,7 @@ Presentation → Application → Domain ← Infrastructure
 ## Architectural Decisions
 
 **Strategy Pattern — Impact Calculation**
-ImpactCalculationStrategy is defined as an interface in the domain layer with two implementations: SimpleImpactStrategy and WeightedImpactStrategy. Both take List<MaterialComposition> as a parameter since impact calculation requires both the material's impact value and its quantity. Adding a new calculation method requires only a new class, no existing code is modified. This satisfies OCP.
+ImpactCalculationStrategy is defined as an interface in the domain layer with two implementations: SimpleImpactStrategy and WeightedImpactStrategy. Both take List<MaterialComposition> as a parameter since impact calculation requires both the material's impact value and its quantity. Adding a new calculation method requires only a new class — no existing code is modified. This satisfies OCP.
 
 **Strategy Pattern — Recycling Guidance**
 RecyclingGuide is defined as an interface with five implementations: RecyclableGuidance, CompostableGuidance, HazardousGuidance, LandfillableGuidance, and MixedMaterialGuidance. Each implementation takes List<Material> as a parameter since recycling guidance only needs to inspect each material's recycling category, quantity is irrelevant to guidance. Adding a new category rule requires only a new class, no existing code is modified. This satisfies OCP.
