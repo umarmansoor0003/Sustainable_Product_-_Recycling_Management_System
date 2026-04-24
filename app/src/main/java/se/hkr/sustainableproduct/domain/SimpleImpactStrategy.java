@@ -14,6 +14,10 @@ public class SimpleImpactStrategy {
  */
     @Override
     double calculateImpact(Product product) {
-
+        double calc = 0.0;
+        for (MaterialComposition mc : product.getCompositions()) {
+            calc += mc.getMaterial().getBaseImpact() * mc.getQuantity();
+        }
+        return calc;
     }
 }
