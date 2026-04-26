@@ -1,5 +1,16 @@
 package se.hkr.sustainableproduct.domain;
 
-public class CompositeGuidance {
+import java.util.List;
+
+public class CompositeGuidance implements RecyclingGuide {
     
+    @Override
+    public boolean supports(List<Material> materials) {
+        return true;
+    }
+    
+    @Override
+    public String getGuidance(List<Material> materials) {
+        return "This product contains composite materials.";
+    }
 }
