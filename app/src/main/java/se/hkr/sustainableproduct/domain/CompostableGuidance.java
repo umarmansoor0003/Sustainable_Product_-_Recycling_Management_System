@@ -16,7 +16,7 @@ public class CompostableGuidance implements RecyclingGuide {
     @Override
     public boolean supports(List<Material> materials) {
         for (Material material : materials) {
-            if (!material.getRecyclingCategory().isCompostable()) {
+            if (material.getRecyclingCategory() != RecyclingCategory.COMPOSTABLE) {
                 return false;
             }
         }
@@ -25,11 +25,21 @@ public class CompostableGuidance implements RecyclingGuide {
     
     /**
      * Provides composting guidance for fully compostable products.
+     * Uses StringBuilder for string concatenation.
      * @param materials the list of materials
      * @return a String with composting instructions
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        return "This product contains composite materials.";
+        StringBuilder result = new StringBuilder();
+        result.append("This product is compostable.\n");
+        result.append("Compostable materials in this product:\n");
+
+        for (Material material : materials) {
+            result.append("  - ").append(material.getName()).append("\n");
+        }
+        result.append("\nPlease place in compost bin.");
+        return result.toString();
     }
+    
 }

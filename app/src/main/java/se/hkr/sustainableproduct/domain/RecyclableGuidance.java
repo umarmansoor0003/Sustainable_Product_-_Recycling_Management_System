@@ -16,7 +16,7 @@ public class RecyclableGuidance implements RecyclingGuide {
     @Override
     public boolean supports(List<Material> materials) {
         for (Material material : materials) {
-            if (!material.getRecyclingCategory().isRecyclable()) {
+            if (material.getRecyclingCategory() != RecyclingCategory.RECYCLABLE) {
                 return false;
             }
         }
@@ -30,6 +30,14 @@ public class RecyclableGuidance implements RecyclingGuide {
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        return "This product is recyclable.";
+        StringBuilder result = new StringBuilder();
+        result.append("This product is recyclable.\n");
+        result.append("Recyclable materials in this product:\n");
+
+        for (Material material : materials) {
+            result.append("  - ").append(material.getName()).append("\n");
+        }
+        result.append("\nPlease recycling bin.");
+        return result.toString();
     }
 }

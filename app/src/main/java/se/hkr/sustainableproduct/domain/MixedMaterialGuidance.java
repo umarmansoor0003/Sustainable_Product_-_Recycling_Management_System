@@ -37,6 +37,27 @@ public class MixedMaterialGuidance implements RecyclingGuide {
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        return "This product has mixed materials.";
+        StringBuilder result = new StringBuilder();
+        result.append("MIXED MATERIAL PRODUCT DETECTED\n");
+        result.append("This product contains different material types.\n\n");
+        result.append("Materials and their disposal instructions:\n");
+
+        for (Material material : materials) {
+            result.append("  - ").append(material.getName()).append(": ");
+
+            if (material.getRecyclingCategory() == RecyclingCategory.RECYCLABLE) {
+                result.append("Recycle - Place in recycling bin");
+            } else if (material.getRecyclingCategory() == RecyclingCategory.COMPOSTABLE) {
+                result.append("Compost - Place in compost bin");
+            } else if (material.getRecyclingCategory() == RecyclingCategory.HAZARDOUS) {
+                result.append("HAZARDOUS - Special handling required");
+            } else {
+                result.append("Landfill - Dispose in regular bin");
+            }
+            result.append("\n");
+        }
+        result.append("\nPlease separate materials if possible before recycling.");
+        return result.toString();
+    
     }
 }

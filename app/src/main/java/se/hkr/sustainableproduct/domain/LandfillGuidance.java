@@ -16,7 +16,7 @@ public class LandfillGuidance implements RecyclingGuide {
     @Override
     public boolean supports(List<Material> materials) {
         for (Material material : materials) {
-            if (!material.getRecyclingCategory().isLandfill()) {
+            if (!material.getRecyclingCategory() != RecyclingCategory.LANDFILL) {
                 return false;
             }
         }
@@ -30,6 +30,15 @@ public class LandfillGuidance implements RecyclingGuide {
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        return "This product is not recyclable.";
+        StringBuilder result = new StringBuilder();
+        result.append("This product cannot be recycled or composted.\n");
+        result.append("Materials that must go to landfill:\n");
+
+        for (Material material : materials) {
+            result.append("  - ").append(material.getName()).append("\n");
+        }
+        result.append("\nDispose in regular trash.");
+        return result.toString();
     }
+
 }

@@ -16,7 +16,7 @@ public class HazardousGuidance implements RecyclingGuide {
     @Override
     public boolean supports(List<Material> materials) {
         for (Material material : materials) {
-            if (material.getRecyclingCategory().isHazardous()) {
+            if (material.getRecyclingCategory() == RecyclingCategory.HAZARDOUS) {
                 return true;
             }
         }
@@ -25,11 +25,24 @@ public class HazardousGuidance implements RecyclingGuide {
     
     /**
      * Provides safety warning and disposal guidance for hazardous products.
+     * Uses StringBuilder for string concatenation.
      * @param materials the list of materials
      * @return a String with hazardous waste disposal instructions
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        return "\nDo not dispose in regular trash.";
+        StringBuilder result = new StringBuilder();
+        result.append("HAZARDOUS MATERIAL DETECTED\n");
+        result.append("Do not dispose in regular bin.\n\n");
+        result.append("Hazardous materials in this product:\n");
+
+        for (Material material : materials) {
+            if (material.getRecyclingCategory() == RecyclingCategory.HAZARDOUS) {
+                result.append("  - ").append(material.getName()).append("\n");
+            }
+        }
+        result.append("\nContact your local hazardous waste facility for proper disposal.");
+        return result.toString();
     }
+    
 }
