@@ -3,19 +3,22 @@ package se.hkr.sustainableproduct.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Selects the appropriate recycling guidance strategy at runtime.
+ */
 public class GuidanceSelector {
     private List<RecyclingGuide> implementables;
     
     public GuidanceSelector(List<RecyclingGuide> implementables) {
         this.implementables = implementables;
     }
-    
+
     public RecyclingGuide select(List<Material> materials) {
-        for (RecyclingGuide guide : implementables) {
-            if (guide.supports(materials)) {
-                return guide;
+        for (RecyclingGuide implementable : implementables) {
+            if (implementable.supports(materials)) {
+                return implementable;
             }
         }
-        return new MixedMaterialGuidance();
+        throw new IllegalArgumentException("No suitable recycling strategy found for these materials");
     }
 }
