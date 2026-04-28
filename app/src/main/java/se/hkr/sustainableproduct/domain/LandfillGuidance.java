@@ -3,7 +3,6 @@ package se.hkr.sustainableproduct.domain;
 import java.util.List;
 
 /**
- * Implementation of RecyclingGuide for landfill materials.
  * This strategy applies only when all materials in the product are non recyclable and non compostable.
  */
 public class LandfillGuidance implements RecyclingGuide {
@@ -16,7 +15,7 @@ public class LandfillGuidance implements RecyclingGuide {
     @Override
     public boolean supports(List<Material> materials) {
         for (Material material : materials) {
-            if (!material.getRecyclingCategory() != RecyclingCategory.LANDFILL) {
+            if (material.getRecyclingCategory() != RecyclingCategory.LANDFILL) {
                 return false;
             }
         }
@@ -30,15 +29,7 @@ public class LandfillGuidance implements RecyclingGuide {
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        StringBuilder result = new StringBuilder();
-        result.append("This product cannot be recycled or composted.\n");
-        result.append("Materials that must go to landfill:\n");
-
-        for (Material material : materials) {
-            result.append("  - ").append(material.getName()).append("\n");
-        }
-        result.append("\nDispose in regular trash.");
-        return result.toString();
+        return "All materials in this product are non-recyclable. Place in general waste.";
     }
 
 }

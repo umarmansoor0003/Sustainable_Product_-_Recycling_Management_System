@@ -3,7 +3,6 @@ package se.hkr.sustainableproduct.domain;
 import java.util.List;
 
 /**
- * Implementation of RecyclingGuide for recyclable materials.
  * This strategy applies only when ALL materials in the product are recyclable.
  */
 public class RecyclableGuidance implements RecyclingGuide {
@@ -30,14 +29,7 @@ public class RecyclableGuidance implements RecyclingGuide {
      */
     @Override
     public String getGuidance(List<Material> materials) {
-        StringBuilder result = new StringBuilder();
-        result.append("This product is recyclable.\n");
-        result.append("Recyclable materials in this product:\n");
-
-        for (Material material : materials) {
-            result.append("  - ").append(material.getName()).append("\n");
-        }
-        result.append("\nPlease recycling bin.");
-        return result.toString();
+        return "All materials in this product are recyclable. Place in the recycling bin.";
+       
     }
 }
