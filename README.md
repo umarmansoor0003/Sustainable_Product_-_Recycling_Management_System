@@ -209,6 +209,7 @@ Each class has one clearly defined reason to change. Product holds domain data o
 * feature/material-model
 * feature/product-management
 * feature/recycling-guidance
+* feature/presentation
 
 ---
 
