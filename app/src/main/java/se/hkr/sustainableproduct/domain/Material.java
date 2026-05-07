@@ -44,4 +44,13 @@ public class Material {
     public RecyclingCategory getRecyclingCategory() {
         return recyclingCategory;
     }
+
+    /**
+     * @return a string representation of this material
+     */
+    @Override
+    public String toString() {
+        return String.format("Material '%s' (Category: %s, Base Impact: %.2f)",
+                name, recyclingCategory, baseImpactValue);
+    }
 }

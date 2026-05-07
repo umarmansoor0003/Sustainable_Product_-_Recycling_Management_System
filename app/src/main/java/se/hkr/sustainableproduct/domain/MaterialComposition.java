@@ -42,4 +42,12 @@ public class MaterialComposition {
     public RecyclingCategory getCategory() {
         return material.getRecyclingCategory();
     }
+
+    /**
+     * @return a string representation of this material composition
+     */
+    @Override
+    public String toString() {
+        return String.format("Composition: %.2f of %s", quantity, material);
+    }
 }
