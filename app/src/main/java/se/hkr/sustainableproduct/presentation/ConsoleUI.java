@@ -88,17 +88,13 @@ public class ConsoleUI {
         while (true) {
             String matName = readString("Enter material name to add (or 'done' to finish): ");
             if (matName.equalsIgnoreCase("done")) break;
-
-            // Validate material immediately
-            Material material = materialService.findMaterialByName(matName);
-            if (material == null) {
-                printOutput("Material not found, try again.");
-                continue;
+        
+            double qty = -1;
+            while (qty <= 0) {
+                qty = readDouble("Enter quantity for " + matName + ": ");
+                if (qty <= 0) printOutput("Quantity must be greater than 0.");
             }
-
-            // Ask for quantity only after validation
-            double qty = readDouble("Enter quantity for " + matName + ": ");
-
+        
             materialNames.add(matName);
             quantities.add(qty);
         }
