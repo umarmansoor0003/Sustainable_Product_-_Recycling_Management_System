@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import se.hkr.sustainableproduct.application.*;
-import se.hkr.sustainableproduct.domain.*;
 
 public class ConsoleUI {
     private final ProductService productService;
@@ -64,15 +63,7 @@ public class ConsoleUI {
         String name = readString("Enter product name: ");
 
         // CATEGORY SELECTION
-        Category category = null;
-        while (category == null) {
-            String input = readString("Enter category (ELECTRONICS, HOUSEHOLD, PACKAGING): ");
-            try {
-                category = Category.valueOf(input.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                printOutput("Invalid category, try again.");
-            }
-        }
+        String category = readString("Enter category (ELECTRONICS, HOUSEHOLD, PACKAGING): ");
 
         // VALIDATION FOR LIFESPAN (YEARS)
         int lifespan = -1;
@@ -100,7 +91,7 @@ public class ConsoleUI {
         }
 
         // CREATE PRODUCT
-        productService.createProduct(name, category, new Lifespan(lifespan), materialNames, quantities);
+        productService.createProduct(name, category, lifespan, materialNames, quantities);
 
         printOutput("Product created successfully!");
     }
@@ -109,15 +100,15 @@ public class ConsoleUI {
      * Menu choice 2: Lists all registered products.
      */
     private void handleListProducts() {
-        List<Product> products = productService.getAllProducts();
+        List<String> products = productService.getAllProducts();
         if (products.isEmpty()) {
             printOutput("No products found.");
             return;
         }
-
+    
         printOutput("\n--- Registered Products ---");
-        for (Product p : products) {
-            printOutput(p.toString());
+        for (String p : products) {
+            printOutput(p);
         }
     }
 
@@ -128,15 +119,7 @@ public class ConsoleUI {
         String name = readString("Enter material name: ");
 
         // RECYCLING CATEGORY SELECTION
-        RecyclingCategory r_category = null;
-        while (r_category == null) {
-            String input = readString("Enter recycling category (RECYCLABLE, COMPOSTABLE, HAZARDOUS, LANDFILL): ");
-            try {
-                r_category = RecyclingCategory.valueOf(input.toUpperCase());
-            } catch (IllegalArgumentException e) {
-                printOutput("Invalid recycling category, try again.");
-            }
-        }
+        String r_category = readString("Enter recycling category (RECYCLABLE, COMPOSTABLE, HAZARDOUS, LANDFILL): ");
 
         // VALIDATION FOR NEGATIVE IMPACT SCORES
         double impact = -1;
@@ -157,17 +140,19 @@ public class ConsoleUI {
      * Menu choice 4: Lists all registered materials.
      */
     private void handleListMaterials() {
-        List<Material> materials = materialService.getAllMaterials();
+        List<String> materials = materialService.getAllMaterials();
         if (materials.isEmpty()) {
             printOutput("No materials registered.");
             return;
         }
 
         printOutput("\n--- Registered Materials ---");
-        for (Material m : materials) {
-            printOutput(m.toString());
+        for (String m : materials) {
+            printOutput(m);
         }
     }
+
+
 
     /**
      * Menu choice 5: Calculates the environmental impact of a product.
