@@ -26,5 +26,5 @@ java {
 }
 
 application {
-    mainClass = 'se.hkr.sustainableproduct.presentation.ConsoleUI'
+    mainClass = 'se.hkr.sustainableproduct.Main'
 }
